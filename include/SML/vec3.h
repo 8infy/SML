@@ -1,6 +1,6 @@
 #pragma once
 
-#include "vec2"
+#include "vec2.h"
 
 namespace sml {
 

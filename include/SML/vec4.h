@@ -1,7 +1,7 @@
 #pragma once
 
-#include "vec2"
-#include "vec3"
+#include "vec2.h"
+#include "vec3.h"
 
 namespace sml {
 
