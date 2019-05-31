@@ -1,5 +1,7 @@
 #pragma once
 
+#include "vec2"
+
 namespace sml {
 
 	class vec3
@@ -26,7 +28,13 @@ namespace sml {
 	public:
 		vec3() : x(0.0f), y(0.0f), z(0.0f) {}
 
-		vec3(const float& x, const float& y, const float& z) : x(x), y(y), z(z) {}
+		vec3(float scalar) : x(scalar), y(scalar), z(scalar) {}
+
+		vec3(float x, float y, float z) : x(x), y(y), z(z) {}
+
+		vec3(const vec2& vec2) : x(vec2.x), y(vec2.y), z(0.0f) {}
+
+		vec3(const vec2& vec2, float z) : x(vec2.x), y(vec2.y), z(z) {}
 
 		void operator+=(const vec3& other)
 		{

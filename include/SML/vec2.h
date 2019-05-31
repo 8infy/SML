@@ -21,7 +21,9 @@ namespace sml {
 	public:
 		vec2() : x(0.0f), y(0.0f) {}
 
-		vec2(const float& x, const float& y) : x(x), y(y) {}
+		vec2(float scalar) : x(scalar), y(scalar) {}
+
+		vec2(float x, float y) : x(x), y(y) {}
 
 		void operator+=(const vec2& other)
 		{
