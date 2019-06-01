@@ -7,6 +7,8 @@
 #include "vec2.h"
 #include "vec3.h"
 #include "vec4.h"
+/*----Matricies----*/
+#include "mat4.h"
 
 /*----Functions----*/
 namespace sml {

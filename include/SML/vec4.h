@@ -43,6 +43,11 @@ namespace sml {
 
 		vec4(const vec3& vec3, float w) : x(vec3.x), y(vec3.y), z(vec3.z), w(w) {}
 
+		float& operator[](int index)
+		{
+			return elements[index];
+		}
+
 		void operator+=(const vec4& other)
 		{
 			this->x += other.x;
@@ -110,6 +115,11 @@ namespace sml {
 		float dot(const vec4& other)
 		{
 			return this->x * other.x + this->y * other.y + this->z * other.z + this->w * other.w;
+		}
+
+		float* data()
+		{
+			return &elements[0];
 		}
 
 		//friends
