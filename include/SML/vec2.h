@@ -31,10 +31,22 @@ namespace sml {
 			this->y += other.y;
 		}
 
+		void operator+=(float scalar)
+		{
+			this->x += scalar;
+			this->y += scalar;
+		}
+
 		void operator-=(const vec2& other)
 		{
 			this->x -= other.x;
 			this->y -= other.y;
+		}
+
+		void operator-=(float scalar)
+		{
+			this->x -= scalar;
+			this->y -= scalar;
 		}
 
 		void operator*=(const vec2& other)
@@ -55,6 +67,17 @@ namespace sml {
 			this->y /= other.y;
 		}
 
+		void operator/=(float scalar)
+		{
+			this->x /= scalar;
+			this->y /= scalar;
+		}
+
+		float dot(const vec2& other)
+		{
+			return this->x * other.x + this->y * other.y;
+		}
+
 		//friends
 		friend vec2 operator+(vec2 lhs, const vec2& rhs)
 		{
@@ -64,10 +87,26 @@ namespace sml {
 			return lhs;
 		}
 
+		friend vec2 operator+(vec2 lhs, float scalar)
+		{
+			lhs.x += scalar;
+			lhs.y += scalar;
+
+			return lhs;
+		}
+
 		friend vec2 operator-(vec2 lhs, const vec2& rhs)
 		{
 			lhs.x -= rhs.x;
 			lhs.y -= rhs.y;
+
+			return lhs;
+		}
+
+		friend vec2 operator-(vec2 lhs, float scalar)
+		{
+			lhs.x -= scalar;
+			lhs.y -= scalar;
 
 			return lhs;
 		}
@@ -92,6 +131,14 @@ namespace sml {
 		{
 			lhs.x /= rhs.x;
 			lhs.y /= rhs.y;
+
+			return lhs;
+		}
+
+		friend vec2 operator/(vec2 lhs, float scalar)
+		{
+			lhs.x /= scalar;
+			lhs.y /= scalar;
 
 			return lhs;
 		}

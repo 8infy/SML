@@ -51,12 +51,28 @@ namespace sml {
 			this->w += other.w;
 		}
 
+		void operator+=(float scalar)
+		{
+			this->x += scalar;
+			this->y += scalar;
+			this->z += scalar;
+			this->w += scalar;
+		}
+
 		void operator-=(const vec4& other)
 		{
 			this->x -= other.x;
 			this->y -= other.y;
 			this->z -= other.z;
 			this->w -= other.w;
+		}
+
+		void operator-=(float scalar)
+		{
+			this->x -= scalar;
+			this->y -= scalar;
+			this->z -= scalar;
+			this->w -= scalar;
 		}
 
 		void operator*=(const vec4& other)
@@ -83,6 +99,19 @@ namespace sml {
 			this->w /= other.w;
 		}
 
+		void operator/=(float scalar)
+		{
+			this->x /= scalar;
+			this->y /= scalar;
+			this->z /= scalar;
+			this->w /= scalar;
+		}
+
+		float dot(const vec4& other)
+		{
+			return this->x * other.x + this->y * other.y + this->z * other.z + this->w * other.w;
+		}
+
 		//friends
 		friend vec4 operator+(vec4 lhs, const vec4& rhs)
 		{
@@ -94,12 +123,32 @@ namespace sml {
 			return lhs;
 		}
 
+		friend vec4 operator+(vec4 lhs, float scalar)
+		{
+			lhs.x += scalar;
+			lhs.y += scalar;
+			lhs.z += scalar;
+			lhs.w += scalar;
+
+			return lhs;
+		}
+
 		friend vec4 operator-(vec4 lhs, const vec4& rhs)
 		{
 			lhs.x -= rhs.x;
 			lhs.y -= rhs.y;
 			lhs.z -= rhs.z;
 			lhs.w -= rhs.w;
+
+			return lhs;
+		}
+
+		friend vec4 operator-(vec4 lhs, float scalar)
+		{
+			lhs.x -= scalar;
+			lhs.y -= scalar;
+			lhs.z -= scalar;
+			lhs.w -= scalar;
 
 			return lhs;
 		}
@@ -130,6 +179,16 @@ namespace sml {
 			lhs.y /= rhs.y;
 			lhs.z /= rhs.z;
 			lhs.w /= rhs.w;
+
+			return lhs;
+		}
+
+		friend vec4 operator/(vec4 lhs, float scalar)
+		{
+			lhs.x /= scalar;
+			lhs.y /= scalar;
+			lhs.z /= scalar;
+			lhs.w /= scalar;
 
 			return lhs;
 		}
