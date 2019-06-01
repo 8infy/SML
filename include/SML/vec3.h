@@ -57,6 +57,13 @@ namespace sml {
 			this->z *= other.z;
 		}
 
+		void operator*=(float scalar)
+		{
+			this->x *= scalar;
+			this->y *= scalar;
+			this->z *= scalar;
+		}
+
 		void operator/=(const vec3& other)
 		{
 			this->x /= other.x;
@@ -88,6 +95,15 @@ namespace sml {
 			lhs.x *= rhs.x;
 			lhs.y *= rhs.y;
 			lhs.z *= rhs.z;
+
+			return lhs;
+		}
+
+		friend vec3 operator*(vec3 lhs, float scalar)
+		{
+			lhs.x *= scalar;
+			lhs.y *= scalar;
+			lhs.z *= scalar;
 
 			return lhs;
 		}

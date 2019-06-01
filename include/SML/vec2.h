@@ -43,6 +43,12 @@ namespace sml {
 			this->y *= other.y;
 		}
 
+		void operator*=(float scalar)
+		{
+			this->x *= scalar;
+			this->y *= scalar;
+		}
+
 		void operator/=(const vec2& other)
 		{
 			this->x /= other.x;
@@ -70,6 +76,14 @@ namespace sml {
 		{
 			lhs.x *= rhs.x;
 			lhs.y *= rhs.y;
+
+			return lhs;
+		}
+
+		friend vec2 operator*(vec2 lhs, float scalar)
+		{
+			lhs.x *= scalar;
+			lhs.y *= scalar;
 
 			return lhs;
 		}
