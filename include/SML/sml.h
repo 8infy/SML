@@ -32,4 +32,28 @@ namespace sml {
                             lhs.z * rhs.x - lhs.x * rhs.z,
                             lhs.x * rhs.y - lhs.y * rhs.x);
 	}
+
+	inline float magnitude(const vec2& vec2)
+	{
+		return sqrt(vec2.x * vec2.x + vec2.y * vec2.y);
+	}
+
+	inline float magnitude(const vec3& vec3)
+	{
+		return sqrt(vec3.x * vec3.x + vec3.y * vec3.y + vec3.z * vec3.z);
+	}
+
+	inline vec2 normalize(const vec2& vec)
+	{
+		float len = magnitude(vec);
+
+		return vec2(vec.x / len, vec.y / len);
+	}
+
+	inline vec3 normalize(const vec3& vec)
+	{
+		float len = magnitude(vec);
+
+		return vec3(vec.x / len, vec.y / len, vec.z / len);
+	}
 }
