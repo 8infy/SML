@@ -58,4 +58,12 @@ namespace sml {
 
 		return vec3(vec.x / len, vec.y / len, vec.z / len);
 	}
+
+	inline mat4 translate(const mat4& matrix, const vec3& translation)
+	{
+		mat4 result = matrix;
+		result.translate(translation);
+
+		return result;
+	}
 }

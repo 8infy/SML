@@ -30,6 +30,11 @@ namespace sml {
 			return elements[index];
 		}
 
+		const float& operator[](int index) const
+		{
+			return elements[index];
+		}
+
 		void operator+=(const vec2& other)
 		{
 			this->x += other.x;
