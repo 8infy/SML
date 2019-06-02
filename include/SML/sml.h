@@ -66,4 +66,44 @@ namespace sml {
 
 		return result;
 	}
+
+	inline mat4 scale(const mat4& matrix, const vec3& scalars)
+	{
+		mat4 result = matrix;
+		result.scale(scalars);
+
+		return result;
+	}
+
+	inline mat4 rotate(const mat4& matrix, float angle, const vec3& axis)
+	{
+		mat4 rotation(1.0f);
+
+		float r = to_radians(angle);
+		float c = cos(r);
+		float s = sin(r);
+		float omc = 1.0f - c;
+
+		float x = axis.x;
+		float y = axis.y;
+		float z = axis.z;
+
+		rotation[0][0] = x * x * omc + c;
+		rotation[0][1] = x * y * omc + z * s;
+		rotation[0][2] = x * z * omc - y * s;
+
+		rotation[1][0] = x * y * omc - z * s;
+		rotation[1][1] = y * y * omc + c;
+		rotation[1][2] = y * z * omc + x * s;
+
+		rotation[2][0] = x * z * omc + y * s;
+		rotation[2][1] = y * z * omc - x * s;
+		rotation[2][2] = z * z * omc + c;
+
+		mat4 result = matrix;
+		
+		result *= rotation;
+		
+		return result;
+	}
 }
