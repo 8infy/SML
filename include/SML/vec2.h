@@ -83,7 +83,7 @@ namespace sml {
 			this->y /= scalar;
 		}
 
-		float dot(const vec2& other)
+		float dot(const vec2& other) const
 		{
 			return this->x * other.x + this->y * other.y;
 		}

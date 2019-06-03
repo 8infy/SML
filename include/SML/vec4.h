@@ -117,7 +117,7 @@ namespace sml {
 			this->w /= scalar;
 		}
 
-		float dot(const vec4& other)
+		float dot(const vec4& other) const
 		{
 			return this->x * other.x + this->y * other.y + this->z * other.z + this->w * other.w;
 		}

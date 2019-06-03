@@ -60,13 +60,13 @@ namespace sml {
 
 			float tanHalfFov = tan(to_radians(fov * 0.5f));
 
-			result[0][0] = 1 / (aspectRatio * tanHalfFov);
-			result[1][1] = 1 / tanHalfFov;
+			result[0][0] = 1.0f / (aspectRatio * tanHalfFov);
+			result[1][1] = 1.0f / tanHalfFov;
 			result[2][2] = -(far + near) / (far - near);
 
-			result[2][3] = -1;
+			result[2][3] = -1.0f;
 			
-			result[3][2] = -(2 * far * near) / (far - near);
+			result[3][2] = -(2.0f * far * near) / (far - near);
 
 			return result;
 		}
