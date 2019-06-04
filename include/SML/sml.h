@@ -138,4 +138,31 @@ namespace sml {
 
 		return result;
 	}
+
+	inline mat4 lookAt(const vec3& camera, const vec3& target, const vec3&  up)
+	{
+		mat4 result(1.0f);
+
+		vec3 f = normalize(target - camera);
+		vec3 s = cross(f, normalize(up));
+		vec3 u = cross(s, f);
+
+		result[0][0] = s.x;
+		result[1][0] = s.y;
+		result[2][0] = s.z;
+
+		result[0][1] = u.x;
+		result[1][1] = u.y;
+		result[2][1] = u.z;
+
+		result[0][2] = -f.x;
+		result[1][2] = -f.y;
+		result[2][2] = -f.z;
+
+		result[3][0] = -dot(s, camera);
+		result[3][1] = -dot(u, camera);
+		result[3][2] = -dot(f, camera);
+
+		return result;
+	}
 }
