@@ -21,8 +21,7 @@
 - `vec3` -> 3 component vector.
 - `vec4` -> 4 component vector.
 ---
-## Matrix:
--  Elements can be accessed with `myMatrix[column][element]`, as well as `.elements[row + column * 4]`.
+## Matricies (only mat4 for now):
 ## Mat4 constructors:
 - `mat4()` -> all elements set to 0.
 - `mat4::identity()` -> returns and identity matrix (all diagonal elements set to 1.0f).
@@ -30,6 +29,7 @@
 - `mat4::orthographic(float left, float right, float bottom, float top, float near, float far)` -> returns an orthographic projection matrix.
 - `mat4::perspective(float fov, float aspectRatio, float near, float far)` -> returns a perspective projection matrix.
 ## Other matrix functionality:
+-  Elements can be accessed with `myMatrix[column][element]`, as well as `.elements[row + column * 4]`.
 - `scale(const vec3& scalars)` -> scales the matrix.
 - `rotate(float angle, const vec3& axis)` -> rotates the matrix.
 - `translate(const vec3& translation)` -> translates the matrix.
