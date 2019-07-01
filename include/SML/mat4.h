@@ -18,7 +18,7 @@ namespace sml {
 			};
 		};
 	public:
-		
+
 		mat4()
 		{
 			memset(elements, 0, sizeof(float) * 16);
@@ -43,8 +43,8 @@ namespace sml {
 		{
 			mat4 result(1.0f);
 
-			result[0][0] =  2.0f / (right - left);
-			result[1][1] =  2.0f / (top - bottom);
+			result[0][0] = 2.0f / (right - left);
+			result[1][1] = 2.0f / (top - bottom);
 			result[2][2] = -2.0f / (far - near);
 
 			result[3][0] = -(right + left) / (right - left);
@@ -65,7 +65,7 @@ namespace sml {
 			result[2][2] = -(far + near) / (far - near);
 
 			result[2][3] = -1.0f;
-			
+
 			result[3][2] = -(2.0f * far * near) / (far - near);
 
 			return result;
@@ -141,6 +141,129 @@ namespace sml {
 			rotation[2][2] = z * z * omc + c;
 
 			*this *= rotation;
+		}
+
+		void invert()
+		{
+			float tempo[16];
+
+			tempo[0] = elements[5] * elements[10] * elements[15] -
+				elements[5] * elements[11] * elements[14] -
+				elements[9] * elements[6] * elements[15] +
+				elements[9] * elements[7] * elements[14] +
+				elements[13] * elements[6] * elements[11] -
+				elements[13] * elements[7] * elements[10];
+
+			tempo[4] = -elements[4] * elements[10] * elements[15] +
+				elements[4] * elements[11] * elements[14] +
+				elements[8] * elements[6] * elements[15] -
+				elements[8] * elements[7] * elements[14] -
+				elements[12] * elements[6] * elements[11] +
+				elements[12] * elements[7] * elements[10];
+
+			tempo[8] = elements[4] * elements[9] * elements[15] -
+				elements[4] * elements[11] * elements[13] -
+				elements[8] * elements[5] * elements[15] +
+				elements[8] * elements[7] * elements[13] +
+				elements[12] * elements[5] * elements[11] -
+				elements[12] * elements[7] * elements[9];
+
+			tempo[12] = -elements[4] * elements[9] * elements[14] +
+				elements[4] * elements[10] * elements[13] +
+				elements[8] * elements[5] * elements[14] -
+				elements[8] * elements[6] * elements[13] -
+				elements[12] * elements[5] * elements[10] +
+				elements[12] * elements[6] * elements[9];
+
+			tempo[1] = -elements[1] * elements[10] * elements[15] +
+				elements[1] * elements[11] * elements[14] +
+				elements[9] * elements[2] * elements[15] -
+				elements[9] * elements[3] * elements[14] -
+				elements[13] * elements[2] * elements[11] +
+				elements[13] * elements[3] * elements[10];
+
+			tempo[5] = elements[0] * elements[10] * elements[15] -
+				elements[0] * elements[11] * elements[14] -
+				elements[8] * elements[2] * elements[15] +
+				elements[8] * elements[3] * elements[14] +
+				elements[12] * elements[2] * elements[11] -
+				elements[12] * elements[3] * elements[10];
+
+			tempo[9] = -elements[0] * elements[9] * elements[15] +
+				elements[0] * elements[11] * elements[13] +
+				elements[8] * elements[1] * elements[15] -
+				elements[8] * elements[3] * elements[13] -
+				elements[12] * elements[1] * elements[11] +
+				elements[12] * elements[3] * elements[9];
+
+			tempo[13] = elements[0] * elements[9] * elements[14] -
+				elements[0] * elements[10] * elements[13] -
+				elements[8] * elements[1] * elements[14] +
+				elements[8] * elements[2] * elements[13] +
+				elements[12] * elements[1] * elements[10] -
+				elements[12] * elements[2] * elements[9];
+
+			tempo[2] = elements[1] * elements[6] * elements[15] -
+				elements[1] * elements[7] * elements[14] -
+				elements[5] * elements[2] * elements[15] +
+				elements[5] * elements[3] * elements[14] +
+				elements[13] * elements[2] * elements[7] -
+				elements[13] * elements[3] * elements[6];
+
+			tempo[6] = -elements[0] * elements[6] * elements[15] +
+				elements[0] * elements[7] * elements[14] +
+				elements[4] * elements[2] * elements[15] -
+				elements[4] * elements[3] * elements[14] -
+				elements[12] * elements[2] * elements[7] +
+				elements[12] * elements[3] * elements[6];
+
+			tempo[10] = elements[0] * elements[5] * elements[15] -
+				elements[0] * elements[7] * elements[13] -
+				elements[4] * elements[1] * elements[15] +
+				elements[4] * elements[3] * elements[13] +
+				elements[12] * elements[1] * elements[7] -
+				elements[12] * elements[3] * elements[5];
+
+			tempo[14] = -elements[0] * elements[5] * elements[14] +
+				elements[0] * elements[6] * elements[13] +
+				elements[4] * elements[1] * elements[14] -
+				elements[4] * elements[2] * elements[13] -
+				elements[12] * elements[1] * elements[6] +
+				elements[12] * elements[2] * elements[5];
+
+			tempo[3] = -elements[1] * elements[6] * elements[11] +
+				elements[1] * elements[7] * elements[10] +
+				elements[5] * elements[2] * elements[11] -
+				elements[5] * elements[3] * elements[10] -
+				elements[9] * elements[2] * elements[7] +
+				elements[9] * elements[3] * elements[6];
+
+			tempo[7] = elements[0] * elements[6] * elements[11] -
+				elements[0] * elements[7] * elements[10] -
+				elements[4] * elements[2] * elements[11] +
+				elements[4] * elements[3] * elements[10] +
+				elements[8] * elements[2] * elements[7] -
+				elements[8] * elements[3] * elements[6];
+
+			tempo[11] = -elements[0] * elements[5] * elements[11] +
+				elements[0] * elements[7] * elements[9] +
+				elements[4] * elements[1] * elements[11] -
+				elements[4] * elements[3] * elements[9] -
+				elements[8] * elements[1] * elements[7] +
+				elements[8] * elements[3] * elements[5];
+
+			tempo[15] = elements[0] * elements[5] * elements[10] -
+				elements[0] * elements[6] * elements[9] -
+				elements[4] * elements[1] * elements[10] +
+				elements[4] * elements[2] * elements[9] +
+				elements[8] * elements[1] * elements[6] -
+				elements[8] * elements[2] * elements[5];
+
+			float determinant = elements[0] * tempo[0] + elements[1] * tempo[4] + elements[2] * tempo[8] + elements[3] * tempo[12];
+			determinant = 1.0f / determinant;
+
+			for (unsigned int i = 0; i < 4 * 4; i++)
+				elements[i] = tempo[i] * determinant;
 		}
 
 		//friends
