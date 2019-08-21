@@ -31,8 +31,8 @@ namespace sml {
 	inline vec3 cross(const vec3& lhs, const vec3& rhs)
 	{
 		return vec3(lhs.y * rhs.z - lhs.z * rhs.y,
-                            lhs.z * rhs.x - lhs.x * rhs.z,
-                            lhs.x * rhs.y - lhs.y * rhs.x);
+					lhs.z * rhs.x - lhs.x * rhs.z,
+					lhs.x * rhs.y - lhs.y * rhs.x);
 	}
 
 	inline float magnitude(const vec2& vec2)
@@ -42,7 +42,9 @@ namespace sml {
 
 	inline float magnitude(const vec3& vec3)
 	{
-		return sqrt(vec3.x * vec3.x + vec3.y * vec3.y + vec3.z * vec3.z);
+		return sqrt(vec3.x * vec3.x + 
+					vec3.y * vec3.y + 
+					vec3.z * vec3.z);
 	}
 
 	inline vec2 normalize(const vec2& vec)
@@ -282,7 +284,11 @@ namespace sml {
 			matrix.elements[8] * matrix.elements[1] * matrix.elements[6] -
 			matrix.elements[8] * matrix.elements[2] * matrix.elements[5];
 
-		float determinant = matrix.elements[0] * tempo[0] + matrix.elements[1] * tempo[4] + matrix.elements[2] * tempo[8] + matrix.elements[3] * tempo[12];
+		float determinant = matrix.elements[0] * tempo[0] + 
+							matrix.elements[1] * tempo[4] + 
+							matrix.elements[2] * tempo[8] + 
+							matrix.elements[3] * tempo[12];
+
 		determinant = 1.0f / determinant;
 
 		for (unsigned int i = 0; i < 4 * 4; i++)
