@@ -107,12 +107,12 @@ namespace sml {
 			return this->x * other.x + this->y * other.y + this->z * other.z;
 		}
 
-		vec3 cross(const vec3& other) const
-		{
-			return vec3(this->y * other.z - this->z * other.y,
-						this->z * other.x - this->x * other.z,
-						this->x * other.y - this->y * other.x);
-		}
+        vec3 cross(const vec3& other) const
+        {
+            return vec3(this->y * other.z - this->z * other.y,
+                        this->z * other.x - this->x * other.z,
+                        this->x * other.y - this->y * other.x);
+        }
 
 		float* data()
 		{

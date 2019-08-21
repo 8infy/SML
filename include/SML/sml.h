@@ -28,24 +28,24 @@ namespace sml {
 		return lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z + lhs.w * rhs.w;
 	}
 
-	inline vec3 cross(const vec3& lhs, const vec3& rhs)
-	{
-		return vec3(lhs.y * rhs.z - lhs.z * rhs.y,
-					lhs.z * rhs.x - lhs.x * rhs.z,
-					lhs.x * rhs.y - lhs.y * rhs.x);
-	}
+    inline vec3 cross(const vec3& lhs, const vec3& rhs)
+    {
+        return vec3(lhs.y * rhs.z - lhs.z * rhs.y,
+                    lhs.z * rhs.x - lhs.x * rhs.z,
+                    lhs.x * rhs.y - lhs.y * rhs.x);
+    }
 
 	inline float magnitude(const vec2& vec2)
 	{
 		return sqrt(vec2.x * vec2.x + vec2.y * vec2.y);
 	}
 
-	inline float magnitude(const vec3& vec3)
-	{
-		return sqrt(vec3.x * vec3.x + 
-					vec3.y * vec3.y + 
-					vec3.z * vec3.z);
-	}
+    inline float magnitude(const vec3& vec3)
+    {
+        return sqrt(vec3.x * vec3.x + 
+                    vec3.y * vec3.y + 
+                    vec3.z * vec3.z);
+    }
 
 	inline vec2 normalize(const vec2& vec)
 	{
@@ -169,131 +169,129 @@ namespace sml {
 	}
 
 	inline mat4 inverse(mat4 matrix)
-	{
-		float tempo[16];
-
-		tempo[0] = matrix.elements[5] * matrix.elements[10] * matrix.elements[15] -
-			matrix.elements[5] * matrix.elements[11] * matrix.elements[14] -
-			matrix.elements[9] * matrix.elements[6] * matrix.elements[15] +
-			matrix.elements[9] * matrix.elements[7] * matrix.elements[14] +
-			matrix.elements[13] * matrix.elements[6] * matrix.elements[11] -
-			matrix.elements[13] * matrix.elements[7] * matrix.elements[10];
-
-		tempo[4] = -matrix.elements[4] * matrix.elements[10] * matrix.elements[15] +
-			matrix.elements[4] * matrix.elements[11] * matrix.elements[14] +
-			matrix.elements[8] * matrix.elements[6] * matrix.elements[15] -
-			matrix.elements[8] * matrix.elements[7] * matrix.elements[14] -
-			matrix.elements[12] * matrix.elements[6] * matrix.elements[11] +
-			matrix.elements[12] * matrix.elements[7] * matrix.elements[10];
-
-		tempo[8] = matrix.elements[4] * matrix.elements[9] * matrix.elements[15] -
-			matrix.elements[4] * matrix.elements[11] * matrix.elements[13] -
-			matrix.elements[8] * matrix.elements[5] * matrix.elements[15] +
-			matrix.elements[8] * matrix.elements[7] * matrix.elements[13] +
-			matrix.elements[12] * matrix.elements[5] * matrix.elements[11] -
-			matrix.elements[12] * matrix.elements[7] * matrix.elements[9];
-
-		tempo[12] = -matrix.elements[4] * matrix.elements[9] * matrix.elements[14] +
-			matrix.elements[4] * matrix.elements[10] * matrix.elements[13] +
-			matrix.elements[8] * matrix.elements[5] * matrix.elements[14] -
-			matrix.elements[8] * matrix.elements[6] * matrix.elements[13] -
-			matrix.elements[12] * matrix.elements[5] * matrix.elements[10] +
-			matrix.elements[12] * matrix.elements[6] * matrix.elements[9];
-
-		tempo[1] = -matrix.elements[1] * matrix.elements[10] * matrix.elements[15] +
-			matrix.elements[1] * matrix.elements[11] * matrix.elements[14] +
-			matrix.elements[9] * matrix.elements[2] * matrix.elements[15] -
-			matrix.elements[9] * matrix.elements[3] * matrix.elements[14] -
-			matrix.elements[13] * matrix.elements[2] * matrix.elements[11] +
-			matrix.elements[13] * matrix.elements[3] * matrix.elements[10];
-
-		tempo[5] = matrix.elements[0] * matrix.elements[10] * matrix.elements[15] -
-			matrix.elements[0] * matrix.elements[11] * matrix.elements[14] -
-			matrix.elements[8] * matrix.elements[2] * matrix.elements[15] +
-			matrix.elements[8] * matrix.elements[3] * matrix.elements[14] +
-			matrix.elements[12] * matrix.elements[2] * matrix.elements[11] -
-			matrix.elements[12] * matrix.elements[3] * matrix.elements[10];
-
-		tempo[9] = -matrix.elements[0] * matrix.elements[9] * matrix.elements[15] +
-			matrix.elements[0] * matrix.elements[11] * matrix.elements[13] +
-			matrix.elements[8] * matrix.elements[1] * matrix.elements[15] -
-			matrix.elements[8] * matrix.elements[3] * matrix.elements[13] -
-			matrix.elements[12] * matrix.elements[1] * matrix.elements[11] +
-			matrix.elements[12] * matrix.elements[3] * matrix.elements[9];
-
-		tempo[13] = matrix.elements[0] * matrix.elements[9] * matrix.elements[14] -
-			matrix.elements[0] * matrix.elements[10] * matrix.elements[13] -
-			matrix.elements[8] * matrix.elements[1] * matrix.elements[14] +
-			matrix.elements[8] * matrix.elements[2] * matrix.elements[13] +
-			matrix.elements[12] * matrix.elements[1] * matrix.elements[10] -
-			matrix.elements[12] * matrix.elements[2] * matrix.elements[9];
-
-		tempo[2] = matrix.elements[1] * matrix.elements[6] * matrix.elements[15] -
-			matrix.elements[1] * matrix.elements[7] * matrix.elements[14] -
-			matrix.elements[5] * matrix.elements[2] * matrix.elements[15] +
-			matrix.elements[5] * matrix.elements[3] * matrix.elements[14] +
-			matrix.elements[13] * matrix.elements[2] * matrix.elements[7] -
-			matrix.elements[13] * matrix.elements[3] * matrix.elements[6];
-
-		tempo[6] = -matrix.elements[0] * matrix.elements[6] * matrix.elements[15] +
-			matrix.elements[0] * matrix.elements[7] * matrix.elements[14] +
-			matrix.elements[4] * matrix.elements[2] * matrix.elements[15] -
-			matrix.elements[4] * matrix.elements[3] * matrix.elements[14] -
-			matrix.elements[12] * matrix.elements[2] * matrix.elements[7] +
-			matrix.elements[12] * matrix.elements[3] * matrix.elements[6];
-
-		tempo[10] = matrix.elements[0] * matrix.elements[5] * matrix.elements[15] -
-			matrix.elements[0] * matrix.elements[7] * matrix.elements[13] -
-			matrix.elements[4] * matrix.elements[1] * matrix.elements[15] +
-			matrix.elements[4] * matrix.elements[3] * matrix.elements[13] +
-			matrix.elements[12] * matrix.elements[1] * matrix.elements[7] -
-			matrix.elements[12] * matrix.elements[3] * matrix.elements[5];
-
-		tempo[14] = -matrix.elements[0] * matrix.elements[5] * matrix.elements[14] +
-			matrix.elements[0] * matrix.elements[6] * matrix.elements[13] +
-			matrix.elements[4] * matrix.elements[1] * matrix.elements[14] -
-			matrix.elements[4] * matrix.elements[2] * matrix.elements[13] -
-			matrix.elements[12] * matrix.elements[1] * matrix.elements[6] +
-			matrix.elements[12] * matrix.elements[2] * matrix.elements[5];
-
-		tempo[3] = -matrix.elements[1] * matrix.elements[6] * matrix.elements[11] +
-			matrix.elements[1] * matrix.elements[7] * matrix.elements[10] +
-			matrix.elements[5] * matrix.elements[2] * matrix.elements[11] -
-			matrix.elements[5] * matrix.elements[3] * matrix.elements[10] -
-			matrix.elements[9] * matrix.elements[2] * matrix.elements[7] +
-			matrix.elements[9] * matrix.elements[3] * matrix.elements[6];
-
-		tempo[7] = matrix.elements[0] * matrix.elements[6] * matrix.elements[11] -
-			matrix.elements[0] * matrix.elements[7] * matrix.elements[10] -
-			matrix.elements[4] * matrix.elements[2] * matrix.elements[11] +
-			matrix.elements[4] * matrix.elements[3] * matrix.elements[10] +
-			matrix.elements[8] * matrix.elements[2] * matrix.elements[7] -
-			matrix.elements[8] * matrix.elements[3] * matrix.elements[6];
-
-		tempo[11] = -matrix.elements[0] * matrix.elements[5] * matrix.elements[11] +
-			matrix.elements[0] * matrix.elements[7] * matrix.elements[9] +
-			matrix.elements[4] * matrix.elements[1] * matrix.elements[11] -
-			matrix.elements[4] * matrix.elements[3] * matrix.elements[9] -
-			matrix.elements[8] * matrix.elements[1] * matrix.elements[7] +
-			matrix.elements[8] * matrix.elements[3] * matrix.elements[5];
-
-		tempo[15] = matrix.elements[0] * matrix.elements[5] * matrix.elements[10] -
-			matrix.elements[0] * matrix.elements[6] * matrix.elements[9] -
-			matrix.elements[4] * matrix.elements[1] * matrix.elements[10] +
-			matrix.elements[4] * matrix.elements[2] * matrix.elements[9] +
-			matrix.elements[8] * matrix.elements[1] * matrix.elements[6] -
-			matrix.elements[8] * matrix.elements[2] * matrix.elements[5];
-
-		float determinant = matrix.elements[0] * tempo[0] + 
-							matrix.elements[1] * tempo[4] + 
-							matrix.elements[2] * tempo[8] + 
-							matrix.elements[3] * tempo[12];
-
-		determinant = 1.0f / determinant;
-
-		for (unsigned int i = 0; i < 4 * 4; i++)
-			matrix.elements[i] = tempo[i] * determinant;
-
-		return matrix;
-	}
+    {
+        float tempo[16];
+        
+        tempo[0] = matrix.elements[5] * matrix.elements[10] * matrix.elements[15] -
+                   matrix.elements[5] * matrix.elements[11] * matrix.elements[14] -
+                   matrix.elements[9] * matrix.elements[6] * matrix.elements[15]  +
+                   matrix.elements[9] * matrix.elements[7] * matrix.elements[14]  +
+                   matrix.elements[13] * matrix.elements[6] * matrix.elements[11] -
+                   matrix.elements[13] * matrix.elements[7] * matrix.elements[10];
+        
+        tempo[4] = -matrix.elements[4] * matrix.elements[10] * matrix.elements[15] +
+                    matrix.elements[4] * matrix.elements[11] * matrix.elements[14] +
+                    matrix.elements[8] * matrix.elements[6] * matrix.elements[15]  -
+                    matrix.elements[8] * matrix.elements[7] * matrix.elements[14]  -
+                    matrix.elements[12] * matrix.elements[6] * matrix.elements[11] +
+                    matrix.elements[12] * matrix.elements[7] * matrix.elements[10];
+        
+        tempo[8] = matrix.elements[4] * matrix.elements[9] * matrix.elements[15]  -
+                   matrix.elements[4] * matrix.elements[11] * matrix.elements[13] -
+                   matrix.elements[8] * matrix.elements[5] * matrix.elements[15]  +
+                   matrix.elements[8] * matrix.elements[7] * matrix.elements[13]  +
+                   matrix.elements[12] * matrix.elements[5] * matrix.elements[11] -
+                   matrix.elements[12] * matrix.elements[7] * matrix.elements[9];
+        
+        tempo[12] = -matrix.elements[4] * matrix.elements[9] * matrix.elements[14]  +
+                     matrix.elements[4] * matrix.elements[10] * matrix.elements[13] +
+                     matrix.elements[8] * matrix.elements[5] * matrix.elements[14]  -
+                     matrix.elements[8] * matrix.elements[6] * matrix.elements[13]  -
+                     matrix.elements[12] * matrix.elements[5] * matrix.elements[10] +
+                     matrix.elements[12] * matrix.elements[6] * matrix.elements[9];
+        
+        tempo[1] = -matrix.elements[1] * matrix.elements[10] * matrix.elements[15] +
+                    matrix.elements[1] * matrix.elements[11] * matrix.elements[14] +
+                    matrix.elements[9] * matrix.elements[2] * matrix.elements[15]  -
+                    matrix.elements[9] * matrix.elements[3] * matrix.elements[14]  -
+                    matrix.elements[13] * matrix.elements[2] * matrix.elements[11] +
+                    matrix.elements[13] * matrix.elements[3] * matrix.elements[10];
+        
+        tempo[5] = matrix.elements[0] * matrix.elements[10] * matrix.elements[15] -
+                   matrix.elements[0] * matrix.elements[11] * matrix.elements[14] -
+                   matrix.elements[8] * matrix.elements[2] * matrix.elements[15]  +
+                   matrix.elements[8] * matrix.elements[3] * matrix.elements[14]  +
+                   matrix.elements[12] * matrix.elements[2] * matrix.elements[11] -
+                   matrix.elements[12] * matrix.elements[3] * matrix.elements[10];
+        
+        tempo[9] = -matrix.elements[0] * matrix.elements[9] * matrix.elements[15]  +
+                    matrix.elements[0] * matrix.elements[11] * matrix.elements[13] +
+                    matrix.elements[8] * matrix.elements[1] * matrix.elements[15]  -
+                    matrix.elements[8] * matrix.elements[3] * matrix.elements[13]  -
+                    matrix.elements[12] * matrix.elements[1] * matrix.elements[11] +
+                    matrix.elements[12] * matrix.elements[3] * matrix.elements[9];
+        
+        tempo[13] = matrix.elements[0] * matrix.elements[9] * matrix.elements[14]  -
+                    matrix.elements[0] * matrix.elements[10] * matrix.elements[13] -
+                    matrix.elements[8] * matrix.elements[1] * matrix.elements[14]  +
+                    matrix.elements[8] * matrix.elements[2] * matrix.elements[13]  +
+                    matrix.elements[12] * matrix.elements[1] * matrix.elements[10] -
+                    matrix.elements[12] * matrix.elements[2] * matrix.elements[9];
+        
+        tempo[2] = matrix.elements[1] * matrix.elements[6] * matrix.elements[15] -
+                   matrix.elements[1] * matrix.elements[7] * matrix.elements[14] -
+                   matrix.elements[5] * matrix.elements[2] * matrix.elements[15] +
+                   matrix.elements[5] * matrix.elements[3] * matrix.elements[14] +
+                   matrix.elements[13] * matrix.elements[2] * matrix.elements[7] -
+                   matrix.elements[13] * matrix.elements[3] * matrix.elements[6];
+        
+        tempo[6] = -matrix.elements[0] * matrix.elements[6] * matrix.elements[15] +
+                    matrix.elements[0] * matrix.elements[7] * matrix.elements[14] +
+                    matrix.elements[4] * matrix.elements[2] * matrix.elements[15] -
+                    matrix.elements[4] * matrix.elements[3] * matrix.elements[14] -
+                    matrix.elements[12] * matrix.elements[2] * matrix.elements[7] +
+                    matrix.elements[12] * matrix.elements[3] * matrix.elements[6];
+        
+        tempo[10] = matrix.elements[0] * matrix.elements[5] * matrix.elements[15] -
+                    matrix.elements[0] * matrix.elements[7] * matrix.elements[13] -
+                    matrix.elements[4] * matrix.elements[1] * matrix.elements[15] +
+                    matrix.elements[4] * matrix.elements[3] * matrix.elements[13] +
+                    matrix.elements[12] * matrix.elements[1] * matrix.elements[7] -
+                    matrix.elements[12] * matrix.elements[3] * matrix.elements[5];
+        
+        tempo[14] = -matrix.elements[0] * matrix.elements[5] * matrix.elements[14] +
+                     matrix.elements[0] * matrix.elements[6] * matrix.elements[13] +
+                     matrix.elements[4] * matrix.elements[1] * matrix.elements[14] -
+                     matrix.elements[4] * matrix.elements[2] * matrix.elements[13] -
+                     matrix.elements[12] * matrix.elements[1] * matrix.elements[6] +
+                     matrix.elements[12] * matrix.elements[2] * matrix.elements[5];
+        
+        tempo[3] = -matrix.elements[1] * matrix.elements[6] * matrix.elements[11] +
+                    matrix.elements[1] * matrix.elements[7] * matrix.elements[10] +
+                    matrix.elements[5] * matrix.elements[2] * matrix.elements[11] -
+                    matrix.elements[5] * matrix.elements[3] * matrix.elements[10] -
+                    matrix.elements[9] * matrix.elements[2] * matrix.elements[7]  +
+                    matrix.elements[9] * matrix.elements[3] * matrix.elements[6];
+        
+        tempo[7] = matrix.elements[0] * matrix.elements[6] * matrix.elements[11] -
+                   matrix.elements[0] * matrix.elements[7] * matrix.elements[10] -
+                   matrix.elements[4] * matrix.elements[2] * matrix.elements[11] +
+                   matrix.elements[4] * matrix.elements[3] * matrix.elements[10] +
+                   matrix.elements[8] * matrix.elements[2] * matrix.elements[7]  -
+                   matrix.elements[8] * matrix.elements[3] * matrix.elements[6];
+        
+        tempo[11] = -matrix.elements[0] * matrix.elements[5] * matrix.elements[11] +
+                     matrix.elements[0] * matrix.elements[7] * matrix.elements[9]  +
+                     matrix.elements[4] * matrix.elements[1] * matrix.elements[11] -
+                     matrix.elements[4] * matrix.elements[3] * matrix.elements[9]  -
+                     matrix.elements[8] * matrix.elements[1] * matrix.elements[7]  +
+                     matrix.elements[8] * matrix.elements[3] * matrix.elements[5];
+        
+        tempo[15] = matrix.elements[0] * matrix.elements[5] * matrix.elements[10] -
+                    matrix.elements[0] * matrix.elements[6] * matrix.elements[9]  -
+                    matrix.elements[4] * matrix.elements[1] * matrix.elements[10] +
+                    matrix.elements[4] * matrix.elements[2] * matrix.elements[9]  +
+                    matrix.elements[8] * matrix.elements[1] * matrix.elements[6]  -
+                    matrix.elements[8] * matrix.elements[2] * matrix.elements[5];
+        
+        float determinant = matrix.elements[0] * tempo[0] + 
+                            matrix.elements[1] * tempo[4] + 
+                            matrix.elements[2] * tempo[8] + 
+                            matrix.elements[3] * tempo[12];
+        
+        determinant = 1.0f / determinant;
+        
+        for (unsigned int i = 0; i < 4 * 4; i++)
+            matrix.elements[i] = tempo[i] * determinant;
+    }
 }
