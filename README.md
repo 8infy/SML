@@ -1,10 +1,10 @@
-# SML
+# SML | [![Build status](https://ci.appveyor.com/api/projects/status/8k2haf6uy3st02c1?svg=true)](https://ci.appveyor.com/project/8infy/sml) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2bec0a2cac70433eb3576a6b325b4441)](https://www.codacy.com/app/8infy/SML?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=8infy/SML&amp;utm_campaign=Badge_Grade) |
 ## A header-only math library intended for use with any rendering APIs out there. Uses GLSL syntax & column-major
 ---
 ## Please note
 -   SML functions always expect degrees for angles/fov/anything and NOT radians!
 -   It is recommended to include sml.h instead of including headers separately because you gain additional functionality & less cluttered translation unit.
-- Right now SML only supports floating point matricies & vectors. Support for other types might get added in the future.
+-   Right now SML only supports floating point matricies & vectors. Support for other types might get added in the future.
 ---
 ## Utils (functions defined inside utils.h)
 -   `float to_radians(float degrees)` -> converts degrees into radians.
@@ -29,7 +29,7 @@
 -   `mat4::orthographic(float left, float right, float bottom, float top, float near, float far)` -> returns an orthographic projection matrix.
 -   `mat4::perspective(float fov, float aspectRatio, float near, float far)` -> returns a perspective projection matrix.
 ## Other matrix functionality
--    Elements can be accessed with `myMatrix[column][element]`, as well as `.elements[row + column * 4]`.
+-   Elements can be accessed with `myMatrix[column][element]`, as well as `.elements[row + column * 4]`.
 -   `scale(const vec3& scalars)` -> scales the matrix.
 -   `rotate(float angle, const vec3& axis)` -> rotates the matrix.
 -   `translate(const vec3& translation)` -> translates the matrix.
@@ -38,12 +38,9 @@
 -   If you want to access the elements directly/get the pointer you can call `.data()` or use `&mat4[0][0]`.
 -   Almost all matrix manipulation functions can also be found inside sml.h if you prefer them over using member functions.
 ---
-# Defines (defines.h)
+## Defines (defines.h)
 
 SML also provides some defines you might potentially find useful
 -   `SML_PI`
 -   `SML_PI_OVER_180`
 -   `SML_180_OVER_PI`
-
-
-
