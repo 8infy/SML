@@ -5,7 +5,6 @@
 #pragma warning(push)
 #pragma warning(disable : 4804) // unsafe use of type 'bool'
 
-
 namespace sml {
 
     template<typename T>

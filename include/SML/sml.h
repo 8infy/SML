@@ -11,6 +11,9 @@
 /*----Matricies----*/
 #include "mat4.h"
 
+#pragma warning(push)
+#pragma warning(disable : 4804) // unsafe use of type 'bool'
+
 /*----Functions----*/
 namespace sml {
 
@@ -327,3 +330,5 @@ namespace sml {
         return matrix;
     }
 }
+
+#pragma warning(pop)
