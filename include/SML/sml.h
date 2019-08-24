@@ -323,5 +323,7 @@ namespace sml {
         
         for (unsigned int i = 0; i < 4 * 4; i++)
             matrix.elements[i] = tempo[i] * determinant;
+
+        return matrix;
     }
 }
