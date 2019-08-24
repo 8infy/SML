@@ -20,36 +20,36 @@ namespace sml {
     template<typename T = float,  typename U = float>
     inline float dot(const basic_vector_2<T>& lhs, const basic_vector_2<U>& rhs)
     {
-        return static_cast<float>(lhs.x) * rhs.x + 
-               static_cast<float>(lhs.y) * rhs.y;
+        return static_cast<float>(lhs.x) * static_cast<float>(rhs.x) + 
+               static_cast<float>(lhs.y) * static_cast<float>(rhs.y);
     }
     
     template<typename T = float,  typename U = float>
     inline float dot(const basic_vector_3<T>& lhs, const basic_vector_3<U>& rhs)
     {
-        return static_cast<float>(lhs.x) * rhs.x + 
-               static_cast<float>(lhs.y) * rhs.y + 
-               static_cast<float>(lhs.z) * rhs.z;
+        return static_cast<float>(lhs.x) * static_cast<float>(rhs.x) + 
+               static_cast<float>(lhs.y) * static_cast<float>(rhs.y) + 
+               static_cast<float>(lhs.z) * static_cast<float>(rhs.z);
     }
     
     template<typename T = float,  typename U = float>
     inline float dot(const basic_vector_4<T>& lhs, const basic_vector_4<U>& rhs)
     {
-        return static_cast<float>(lhs.x) * rhs.x + 
-               static_cast<float>(lhs.y) * rhs.y + 
-               static_cast<float>(lhs.z) * rhs.z + 
-               static_cast<float>(lhs.w) * rhs.w;
+        return static_cast<float>(lhs.x) * static_cast<float>(rhs.x) + 
+               static_cast<float>(lhs.y) * static_cast<float>(rhs.y) + 
+               static_cast<float>(lhs.z) * static_cast<float>(rhs.z) + 
+               static_cast<float>(lhs.w) * static_cast<float>(rhs.w);
     }
     
     template<typename T = float, typename U = float>
     inline vec3 cross(const basic_vector_3<T>& lhs, const basic_vector_3<U>& rhs)
     {
-        return vec3(static_cast<float>(lhs.y) * rhs.z - 
-                    static_cast<float>(lhs.z) * rhs.y,
-                    static_cast<float>(lhs.z) * rhs.x - 
-                    static_cast<float>(lhs.x) * rhs.z,
-                    static_cast<float>(lhs.x) * rhs.y - 
-                    static_cast<float>(lhs.y) * rhs.x);
+        return vec3(static_cast<float>(lhs.y) * static_cast<float>(rhs.z) - 
+                    static_cast<float>(lhs.z) * static_cast<float>(rhs.y),
+                    static_cast<float>(lhs.z) * static_cast<float>(rhs.x) - 
+                    static_cast<float>(lhs.x) * static_cast<float>(rhs.z),
+                    static_cast<float>(lhs.x) * static_cast<float>(rhs.y) - 
+                    static_cast<float>(lhs.y) * static_cast<float>(rhs.x));
     }
     
     template<typename T = float>
@@ -76,7 +76,9 @@ namespace sml {
     {
         float len = magnitude(vec);
         
-        return vec2(vec.x / len, vec.y / len);
+        return vec2(
+            static_cast<float>(vec.x) / len, 
+            static_cast<float>(vec.y) / len);
     }
     
     template<typename T = float>
@@ -84,7 +86,10 @@ namespace sml {
     {
         float len = magnitude(vec);
         
-        return vec3(vec.x / len, vec.y / len, vec.z / len);
+        return vec3(
+            static_cast<float>(vec.x) / len, 
+            static_cast<float>(vec.y) / len, 
+            static_cast<float>(vec.z) / len);
     }
 
     template<typename T = float, typename U = float>
