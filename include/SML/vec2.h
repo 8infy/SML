@@ -1,161 +1,201 @@
 #pragma once
+#pragma warning(push)
+#pragma warning(disable : 4804) // unsafe use of type 'bool'
 
 namespace sml {
 
-    class vec2
+    template<typename T = float>
+    class basic_vector_2
     {
     public:
         union {
         
             struct
             {
-                float elements[2];
+                T elements[2];
             };
             
             struct
             {
-                float x, y;
+                T x, y;
             };
         
         };
     public:
-        vec2() : x(0.0f), y(0.0f) {}
+        basic_vector_2()
+            : x(static_cast<T>(0)),
+            y(static_cast<T>(0))
+        {
+        }
         
-        vec2(float scalar) : x(scalar), y(scalar) {}
+        basic_vector_2(T scalar)
+            : x(scalar),
+            y(scalar)
+        {
+        }
         
-        vec2(float x, float y) : x(x), y(y) {}
+        basic_vector_2(T x, T y)
+            : x(x),
+            y(y)
+        {
+        }
         
-        float& operator[](int index)
+        T& operator[](int index)
         {
             return elements[index];
         }
         
-        const float& operator[](int index) const
+        const T& operator[](int index) const
         {
             return elements[index];
         }
         
-        void operator+=(const vec2& other)
+        template<typename U = float>
+        void operator+=(const basic_vector_2<U>& other)
         {
-            this->x += other.x;
-            this->y += other.y;
+            this->x += static_cast<T>(other.x);
+            this->y += static_cast<T>(other.y);
         }
         
-        void operator+=(float scalar)
+        template<typename U = float>
+        void operator+=(U scalar)
         {
-            this->x += scalar;
-            this->y += scalar;
+            x += static_cast<T>(scalar);
+            y += static_cast<T>(scalar);
         }
         
-        void operator-=(const vec2& other)
+        template<typename U = float>
+        void operator-=(const basic_vector_2<U>& other)
         {
-            this->x -= other.x;
-            this->y -= other.y;
+            this->x -= static_cast<T>(other.x);
+            this->y -= static_cast<T>(other.y);
         }
         
-        void operator-=(float scalar)
+        template<typename U = float>
+        void operator-=(U scalar)
         {
-            this->x -= scalar;
-            this->y -= scalar;
+            x -= static_cast<T>(scalar);
+            y -= static_cast<T>(scalar);
         }
         
-        void operator*=(const vec2& other)
+        template<typename U = float>
+        void operator*=(const basic_vector_2<U>& other)
         {
-            this->x *= other.x;
-            this->y *= other.y;
+            this->x *= static_cast<T>(other.x);
+            this->y *= static_cast<T>(other.y);
         }
         
-        void operator*=(float scalar)
+        template<typename U = float>
+        void operator*=(U scalar)
         {
-            this->x *= scalar;
-            this->y *= scalar;
+            x *= static_cast<T>(scalar);
+            y *= static_cast<T>(scalar);
         }
         
-        void operator/=(const vec2& other)
+        template<typename U = float>
+        void operator/=(const basic_vector_2<U>& other)
         {
-            this->x /= other.x;
-            this->y /= other.y;
+            this->x /= static_cast<T>(other.x);
+            this->y /= static_cast<T>(other.y);
         }
         
-        void operator/=(float scalar)
+        template<typename U = float>
+        void operator/=(U scalar)
         {
-            this->x /= scalar;
-            this->y /= scalar;
+            x /= static_cast<T>(scalar);
+            y /= static_cast<T>(scalar);
         }
         
-        float dot(const vec2& other) const
+        template<typename U = float>
+        T dot(const basic_vector_2<U>& other) const
         {
-            return this->x * other.x + this->y * other.y;
+            return this->x * static_cast<T>(other.x) + 
+                   this->y * static_cast<T>(other.y);
         }
         
-        float* data()
+        T* data()
         {
             return &elements[0];
         }
-        
-        //friends
-        friend vec2 operator+(vec2 lhs, const vec2& rhs)
-        {
-            lhs.x += rhs.x;
-            lhs.y += rhs.y;
-            
-            return lhs;
-        }
-        
-        friend vec2 operator+(vec2 lhs, float scalar)
-        {
-            lhs.x += scalar;
-            lhs.y += scalar;
-            
-            return lhs;
-        }
-        
-        friend vec2 operator-(vec2 lhs, const vec2& rhs)
-        {
-            lhs.x -= rhs.x;
-            lhs.y -= rhs.y;
-            
-            return lhs;
-        }
-        
-        friend vec2 operator-(vec2 lhs, float scalar)
-        {
-            lhs.x -= scalar;
-            lhs.y -= scalar;
-            
-            return lhs;
-        }
-        
-        friend vec2 operator*(vec2 lhs, const vec2& rhs)
-        {
-            lhs.x *= rhs.x;
-            lhs.y *= rhs.y;
-            
-            return lhs;
-        }
-        
-        friend vec2 operator*(vec2 lhs, float scalar)
-        {
-            lhs.x *= scalar;
-            lhs.y *= scalar;
-            
-            return lhs;
-        }
-        
-        friend vec2 operator/(vec2 lhs, const vec2& rhs)
-        {
-            lhs.x /= rhs.x;
-            lhs.y /= rhs.y;
-            
-            return lhs;
-        }
-        
-        friend vec2 operator/(vec2 lhs, float scalar)
-        {
-            lhs.x /= scalar;
-            lhs.y /= scalar;
-            
-            return lhs;
-        }
     };
+
+    template<typename T = float, typename U = float>
+    basic_vector_2<T> operator+(basic_vector_2<T> lhs, const basic_vector_2<U>& rhs)
+    {
+        lhs.x += static_cast<T>(rhs.x);
+        lhs.y += static_cast<T>(rhs.y);
+
+        return lhs;
+    }
+
+    template<typename T = float, typename U = float>
+    basic_vector_2<T> operator+(basic_vector_2<T> lhs, U scalar)
+    {
+        lhs.x += static_cast<T>(scalar);
+        lhs.y += static_cast<T>(scalar);
+
+        return lhs;
+    }
+
+    template<typename T = float, typename U = float>
+    basic_vector_2<T> operator-(basic_vector_2<T> lhs, const basic_vector_2<U>& rhs)
+    {
+        lhs.x -= static_cast<T>(rhs.x);
+        lhs.y -= static_cast<T>(rhs.y);
+
+        return lhs;
+    }
+
+    template<typename T = float, typename U = float>
+    basic_vector_2<T> operator-(basic_vector_2<T> lhs, U scalar)
+    {
+        lhs.x -= static_cast<T>(scalar);
+        lhs.y -= static_cast<T>(scalar);
+
+        return lhs;
+    }
+
+    template<typename T = float, typename U = float>
+    basic_vector_2<T> operator*(basic_vector_2<T> lhs, const basic_vector_2<U>& rhs)
+    {
+        lhs.x *= static_cast<T>(rhs.x);
+        lhs.y *= static_cast<T>(rhs.y);
+
+        return lhs;
+    }
+
+    template<typename T = float, typename U = float>
+    basic_vector_2<T> operator*(basic_vector_2<T> lhs, U scalar)
+    {
+        lhs.x *= static_cast<T>(scalar);
+        lhs.y *= static_cast<T>(scalar);
+
+        return lhs;
+    }
+
+    template<typename T = float, typename U = float>
+    basic_vector_2<T> operator/(basic_vector_2<T> lhs, const basic_vector_2<U>& rhs)
+    {
+        lhs.x /= static_cast<T>(rhs.x);
+        lhs.y /= static_cast<T>(rhs.y);
+
+        return lhs;
+    }
+
+    template<typename T = float, typename U = float>
+    basic_vector_2<T> operator/(basic_vector_2<T> lhs, U scalar)
+    {
+        lhs.x /= static_cast<T>(scalar);
+        lhs.y /= static_cast<T>(scalar);
+
+        return lhs;
+    }
+
+    typedef basic_vector_2<bool>     bvec2;
+    typedef basic_vector_2<int>      ivec2;
+    typedef basic_vector_2<unsigned> uvec2;
+    typedef basic_vector_2<float>    vec2;
+    typedef basic_vector_2<double>   dvec2;
 }
+
+#pragma warning(pop)
